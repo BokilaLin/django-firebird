@@ -1,5 +1,6 @@
 import uuid
 import datetime
+from decimal import Decimial
 
 from django.conf import settings
 from django.db.backends.base.operations import BaseDatabaseOperations
@@ -244,9 +245,10 @@ class DatabaseOperations(BaseDatabaseOperations):
         return value
 
     def convert_decimalfield_value(self, value, expression, connection, context):
-        field = expression.field
-        val = utils.format_number(value, field.max_digits, field.decimal_places)
-        value = utils.typecast_decimal(val)
+        if value is None or value == '':
+            value = None
+        else:
+            value = Decimal(value)
         return value
 
     def convert_ipfield_value(self, value, expression, connection, context):

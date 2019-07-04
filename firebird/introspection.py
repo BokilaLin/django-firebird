@@ -3,7 +3,7 @@ import warnings
 
 from django.utils import six
 from django.utils.encoding import force_str
-from django.utils.deprecation import RemovedInDjango21Warning
+from django.utils.deprecation import RemovedInNextVersionWarning
 from django.db.models.indexes import Index
 from django.db.backends.base.introspection import (
     BaseDatabaseIntrospection, FieldInfo, TableInfo,
@@ -153,7 +153,7 @@ class DatabaseIntrospection(BaseDatabaseIntrospection):
 
         warnings.warn(
             "get_indexes() is deprecated in favor of get_constraints().",
-            RemovedInDjango21Warning, stacklevel=2
+            RemovedInNextVersionWarning, stacklevel=2
         )
 
         # This query retrieves each field name and index type on the given table.
